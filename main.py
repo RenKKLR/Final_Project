@@ -48,14 +48,14 @@ class Transaction:
 
 def main():
 
-    '''stock = Stock("Amazon", "12345")
+    stock = Stock("Amazon", "12345")
     price = 50
     amount = 100
     date = "2023-11-19"
 
     transaction = Transaction(stock, price, amount, date)
 
-    transaction.save_transaction("transaction.csv", transaction)'''
+    transaction.save_transaction("transaction.csv", transaction)
 
     print(Transaction.single_stock_count("transaction.csv", "Amazon"))
     print(Transaction.single_stock_sum("transaction.csv", "Amazon"))
