@@ -45,8 +45,34 @@ class Transaction:
                     single_stock_sum += (int(transaction[3]) * float(transaction[2]))
         return single_stock_sum
 
+    @staticmethod
+    def sell_stock(filename, sell_transaction):
+        stock_name = sell_transaction.stock.name
+        amount_to_sell = sell_transaction.amount
 
-def main():
+        remaining_stock = Transaction.single_stock_count(filename, stock_name)
+
+        if remaining_stock >= amount_to_sell:
+            with open(filename, "a", newline="") as file:
+                file.write(f"{sell_transaction.stock.name};"
+                           f"{sell_transaction.stock.stock_id};"
+                           f"{sell_transaction.price};"
+                           f"{-sell_transaction.amount};"
+                           f"{sell_transaction.date}\n")
+        else:
+            print(f"You don't have enough stock {stock_name} to sell {amount_to_sell} share(s).")
+
+
+stock = Stock("Amazon", "12345")
+price = 55
+amount = 380
+date = "2023-11-20"
+
+transaction = Transaction(stock, price, amount, date)
+
+transaction.sell_stock("transaction.csv", transaction)
+
+'''def main():
 
     stock = Stock("Amazon", "12345")
     price = 50
@@ -62,7 +88,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main()'''
 
 
 
