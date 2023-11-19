@@ -1,4 +1,4 @@
-# ReDI Final Project
+# Trading Performance Query _ ReDI Final Project
 
 Why this project:
 
