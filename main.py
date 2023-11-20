@@ -22,7 +22,7 @@ class Transaction:
                        f"{transaction.price};"
                        f"{transaction.amount};"
                        f"{transaction.date}\n")
-            print(f"Stock {stock.name} in {amount} share(s) has been saved in {filename} successfully!")
+            print(f"Stock {transaction.stock.name} in {transaction.amount} share(s) has been saved in {filename} successfully!")
 
     @staticmethod
     def single_stock_count(filename, stock_name):
@@ -73,8 +73,7 @@ class Transaction:
     def calculate_single_stock_performance(stock_name):
         bought_amount = 0
         sold_amount = 0
-       #buy_transactions = []
-        #sell_transactions = []
+
         def performance(sell_sum, buy_sum):
             return (sell_sum -buy_sum) / buy_sum * 100
 
@@ -94,14 +93,19 @@ class Transaction:
                     sold_amount += int(sell_transaction[3])
                     sold_value = sold_amount * float(sell_transaction[2])
                     print("Sold: ", sell_transaction)
+                else:
+                    sold_value = 0
+
 
         if bought_amount == 0:
             print(f"You haven't bought stock {stock_name} yet.")
+
 
         elif bought_amount > sold_amount:
             current_price = float(input("Please enter the current selling price: "))
             remaining_shares = bought_amount - sold_amount
             current_value = current_price * remaining_shares
+
             single_stock_performance = performance(sold_value+current_value, bought_value)
             print(f"Current value of stock {stock_name}: €{current_value:.2f}")
             print(f"Bought value of stock {stock_name}: €{bought_value:.2f}")
@@ -110,6 +114,7 @@ class Transaction:
 
         else:
             single_stock_performance = performance(sold_value, bought_value)
+            bought_value = bought_amount * float(buy_transaction[2])
             print(f"Bought value of stock {stock_name}: €{bought_value:.2f}")
             print(f"Sold value of stock {stock_name}: €{sold_value:.2f}")
             print(f"Performance of stock {stock_name}: {single_stock_performance:+.2f}%")
@@ -121,16 +126,16 @@ class Transaction:
 
 
 
-stock = Stock("Amazon", "12345")
-price = 75
-amount = 290
+stock = Stock("Microsoft", "54321")
+price = 270
+amount = 20
 date = "2023-11-20"
 
 transaction = Transaction(stock, price, amount, date)
 
 #transaction.save_transaction("buy.csv", transaction)
-transaction.sell_stock("buy.csv", transaction)
-#transaction.calculate_single_stock_performance("Amazon")
+#transaction.sell_stock("buy.csv", transaction)
+transaction.calculate_single_stock_performance("Microsoft")
 
 
 '''def main():
