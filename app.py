@@ -1,4 +1,6 @@
 import csv
+
+
 class Stock:
     def __init__(self, name, stock_id):
         self.name = name
@@ -112,3 +114,4 @@ class Transaction:
             print(f"Bought value of stock {stock_name}: €{bought_value:.2f}")
             print(f"Sold value of stock {stock_name}: €{sold_value:.2f}")
             print(f"Performance of stock {stock_name}: {single_stock_performance:+.2f}%")
+

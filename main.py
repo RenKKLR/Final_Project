@@ -1,5 +1,4 @@
 from tkinter import *
-from tkinter import messagebox
 import csv
 from app import Transaction
 from app import Stock
