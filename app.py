@@ -1,4 +1,4 @@
-
+import csv
 class Stock:
     def __init__(self, name, stock_id):
         self.name = name
@@ -66,14 +66,13 @@ class Transaction:
         else:
             print(f"You don't have enough stock {stock_name} to sell {amount_to_sell} share(s).")
 
-
     @staticmethod
     def calculate_single_stock_performance(stock_name):
         bought_amount = 0
         sold_amount = 0
 
         def performance(sell_sum, buy_sum):
-            return (sell_sum -buy_sum) / buy_sum * 100
+            return (sell_sum - buy_sum) / buy_sum * 100
 
         with open("buy.csv") as buy_file:
             buy_transactions = csv.reader(buy_file, delimiter=";")
@@ -82,7 +81,6 @@ class Transaction:
                     bought_amount += int(buy_transaction[3])
                     bought_value = bought_amount * float(buy_transaction[2])
                     print("Bought: ", buy_transaction)
-
 
         with open("sell.csv") as sell_file:
             sell_transactions = csv.reader(sell_file, delimiter=";")
@@ -94,10 +92,8 @@ class Transaction:
                 else:
                     sold_value = 0
 
-
         if bought_amount == 0:
             print(f"You haven't bought stock {stock_name} yet.")
-
 
         elif bought_amount > sold_amount:
             current_price = float(input("Please enter the current selling price: "))
