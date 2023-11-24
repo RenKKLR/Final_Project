@@ -3,7 +3,7 @@
 Why this project:
 * practise object-oriented-programming
 * structure the code better
-* try out web scraping
+* try out web scraping (optional)
 
 
 What does this project do:
